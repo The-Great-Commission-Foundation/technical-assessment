@@ -1,17 +1,14 @@
-﻿namespace BackendTesting
-{
-    using System.Threading.Tasks;
-    using NUnit.Framework.Legacy;
-    using Microsoft.Data.Sqlite;
+﻿using System.Threading.Tasks;
+using NUnit.Framework.Legacy;
+using Microsoft.Data.Sqlite;
 
+namespace BackendTesting
+{
     public class SanityTest
     {
         #region Private Variables
 
         private SqliteConnection _connection;
-        private string _donorName;
-        private double _donationAmount;
-        private DateTime _donationDate;
         private HttpClient _httpClient;
 
         #endregion
@@ -26,31 +23,9 @@
 
         #endregion
 
-        #region Public Methods
-
-        public async Task<string> SendGetRequest(string endpoint)
-        {
-            HttpResponseMessage response = await _httpClient.GetAsync(endpoint);
-            response.EnsureSuccessStatusCode(); // Throws an exception if not a success status code
-            return await response.Content.ReadAsStringAsync();
-        }
-
-        public async Task<string> SendPostRequest(string endpoint, HttpContent content)
-        {
-            HttpResponseMessage response = await _httpClient.PostAsync(endpoint, content);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
-        }
-
-        #endregion
-
         [SetUp]
         public void Setup()
         {
-            _donorName = "John Doe";
-            _donationAmount = 100.00;
-            _donationDate = new DateTime(2025, 09, 03);
-
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(BASE_URL);
 
@@ -60,7 +35,7 @@
         [Test, Order(1)]
         public async Task Test_PingCheck()
         {
-            ClassicAssert.NotNull(await SendGetRequest("/ping"));
+            ClassicAssert.NotNull(await ApiHelper.SendGetRequest(_httpClient, "/ping"));
         }
 
         [Test, Order(2)]
@@ -91,7 +66,7 @@
                 _connection.Open();
 
                 var command = _connection.CreateCommand();
-                command.CommandText = "SELECT id, donor_name, amount, date FROM donations WHERE id = "+DB_ID;
+                command.CommandText = "SELECT id, donor_name, amount, date FROM donations WHERE id = " + DB_ID;
 
                 using (var reader = command.ExecuteReader())
                 {

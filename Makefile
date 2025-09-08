@@ -31,3 +31,13 @@ init-db:
 	@echo "-----Creating database and table-----"
 	sqlite3 $(DB_FILE) "$(SQL_CREATE_TABLE)"
 	@echo "-----Table '$(TABLE_NAME)' created in '$(DB_FILE)'-----"
+
+list-pid-unix:
+	lsof -i:5050
+	lsof -i:3000
+	@echo "kill tasks with: kill -9 [PID]"
+
+list-pid-windows:
+	netstat -ano | findstr :5050
+	netstat -ano | findstr :3000
+	@echo "kill tasks with: taskkill /PID [PID] /F"
