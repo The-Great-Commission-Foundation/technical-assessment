@@ -19,19 +19,19 @@ https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit
 
 ## How to get started
 
-1. Create github account
-2. Create New Repository
-3. Click "import a repository"
-<img width="3304" height="1686" alt="image" src="https://github.com/user-attachments/assets/16f90c81-f9f9-4986-b672-1b383b2046dd" />
-4. Use the clone URL from technical-assessment repo
-<img width="2972" height="1708" alt="image" src="https://github.com/user-attachments/assets/99a54c7c-b437-440c-8b20-9ab3e099da77" />
-5. Create it as a "private" repository
-6. After importing the technical-assessment repo to your own account, you can clone it to your local machine
-7. Run `make all` and visit `localhost:3000` and `localhost:5050/ping` to confirm it is working
-8. Complete the assessment given to you using the cloned repo with proper commit messages and branching
-9. Go through the existing packages and file structure to figure out what you might want to use
-10. You can use additional packages to your liking and create new files as necessary
-
+1. Create github account  
+2. Create New Repository  
+3. Click "import a repository"  
+<img width="3304" height="1686" alt="image" src="https://github.com/user-attachments/assets/16f90c81-f9f9-4986-b672-1b383b2046dd" />  
+4. Use the clone URL from technical-assessment repo  
+<img width="2972" height="1708" alt="image" src="https://github.com/user-attachments/assets/99a54c7c-b437-440c-8b20-9ab3e099da77" />  
+5. Create it as a "private" repository  
+6. After importing the technical-assessment repo to your own account, you can clone it to your local machine  
+7. Run `make all` and visit `localhost:3000` and `localhost:5050/ping` to confirm it is working  
+8. Complete the assessment given to you using the cloned repo with proper commit messages and branching  
+9. Go through the existing packages and file structure to figure out what you might want to use  
+10. You can use additional packages to your liking and create new files as necessary  
+  
 ## Useful make commands for the repo
 
 `make all`  
