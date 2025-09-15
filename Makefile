@@ -41,3 +41,15 @@ list-pid-windows:
 	netstat -ano | findstr :5050
 	netstat -ano | findstr :3000
 	@echo "kill tasks with: taskkill /PID [PID] /F"
+
+terminate:
+ifeq ($(OS),Windows_NT)
+	@echo "Killing processes on ports 5050 & 3000 for Windows..."
+	@FOR /F "tokens=5" %%P IN ('netstat -aon ^| findstr :5050') DO taskkill /F /PID %%P > nul 2>&1 || (echo No process found on port 5050)
+	@FOR /F "tokens=5" %%P IN ('netstat -aon ^| findstr :3000') DO taskkill /F /PID %%P > nul 2>&1 || (echo No process found on port 3000)
+else
+	@echo "Killing processes on ports 5050 & 3000 for Mac/Linux..."
+	@lsof -t -i:5050 | xargs kill -9 > /dev/null 2>&1 || (echo No process found on port 5050)
+	@lsof -t -i:3000 | xargs kill -9 > /dev/null 2>&1 || (echo No process found on port 3000)
+endif
+	@echo "Done."
