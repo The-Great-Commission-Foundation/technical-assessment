@@ -29,6 +29,7 @@ init-db:
 	(cd backend; dotnet add package Microsoft.Data.Sqlite)
 	(cd test/be-test; dotnet add package Microsoft.Data.Sqlite)
 	@echo "-----Creating database and table-----"
+	mkdir db
 	sqlite3 $(DB_FILE) "$(SQL_CREATE_TABLE)"
 	@echo "-----Table '$(TABLE_NAME)' created in '$(DB_FILE)'-----"
 
